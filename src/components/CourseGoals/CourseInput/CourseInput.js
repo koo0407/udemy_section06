@@ -6,7 +6,7 @@ import "./CourseInput.css";
 const CourseInput = (props) => {
   const [enteredValue, setEnteredValue] = useState(""); //입력 값
   const [isValid, setIsValid] = useState(true);
-  
+
   //모든 키의 입력이 있을 때 반응하는 핸들러
   const goalInputChangeHandler = (event) => {
     if (event.target.value.length > 0) {
@@ -28,17 +28,10 @@ const CourseInput = (props) => {
 
   return (
     <form onSubmit={formSubmitHandler}>
-      <div className="form-control">
-        {/* 동적 인라인 스타일 */}
-        <label style={{ color: !isValid ? "red" : "black" }}>Course Goal</label>
-        <input
-          style={{
-            borderColor: !isValid ? "red" : "black",
-            backgroundColor: !isValid ? "salmon" : "transparent",
-          }}
-          type="text"
-          onChange={goalInputChangeHandler}
-        />
+      {/* 템플릿 리터럴 : className에 백틱 & JS코드를 사용 */}
+      <div className={`form-control ${!isValid ? 'invalid' : ''}`}>
+        <label>Course Goal</label>
+        <input type="text" onChange={goalInputChangeHandler} />
       </div>
       <Button type="submit">Add Goal</Button>
     </form>
